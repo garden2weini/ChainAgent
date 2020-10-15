@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: ethereum-${application.agent.node-id}
+  profiles:
+    #    active: @profile.active@
+    active: @environment@
+
+server:
+  port: 7000
+
+application:
+  server:
+    host: localhost
+    port: 3000
+    connect-timeout: 50000
+  ethereum:
+    address: https://mainnet.infura.io/v3/06f4ff56379b4a698633ee05f5ff138e
+  chain:
+    type: ethereum
+    id: ethereum
+  node:
+    key: node-key-ethereum
+    id: test
+    access-token: AUTH
+  agent:
+    node-id: ethereum
