@@ -20,7 +20,7 @@ application:
     id: ethereum
   node:
     key: node-key-ethereum
-    id: test
+    id: test1
     access-token: AUTH
   agent:
     node-id: ethereum
