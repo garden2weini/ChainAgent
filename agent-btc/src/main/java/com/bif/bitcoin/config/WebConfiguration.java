@@ -4,16 +4,24 @@ import com.bif.nettyclient.NettyClientConnector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+
+import wf.bitcoin.javabitcoindrpcclient.BitcoinJSONRPCClient;
+import wf.bitcoin.javabitcoindrpcclient.BitcoindRpcClient;
 
 @Configuration
 public class WebConfiguration {
-    /*
     @Bean
-    public Web3j web3j(ApplicationProperties properties) {
-        Web3j web3j = Web3j.build(new HttpService(properties.getEthereum().getAddress()));
-        return web3j;
-    }*/
+    public BitcoindRpcClient bitcoindRpcClient(ApplicationProperties properties) {
+        BitcoindRpcClient client = null;
+        try {
+            client = new BitcoinJSONRPCClient(properties.getBitcoin().getAddress());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return client;
+    }
 
     @Bean(destroyMethod = "shutdown")
     public NettyClientConnector nettyClientConnector(ApplicationProperties properties) throws URISyntaxException {

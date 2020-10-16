@@ -9,6 +9,7 @@ server:
   port: 7000
 
 application:
+  # 数据收集器服务器(Adapter)
   server:
     host: localhost
     port: 3000

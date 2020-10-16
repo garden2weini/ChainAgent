@@ -1,5 +1,9 @@
 package com.bif.bitcoin.config;
 
+/**
+ * TODO: 更新为BTC的事件
+ * Maybe nonsense.
+ */
 public class EventConstants {
 
     public static final String GET_BLOCK_CHAIN = "getBlockchain";

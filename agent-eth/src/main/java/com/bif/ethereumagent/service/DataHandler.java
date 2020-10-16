@@ -1,11 +1,15 @@
 package com.bif.ethereumagent.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bif.nettyclient.NettyClientConnector;
 import com.bif.ethereumagent.config.ApplicationProperties;
 import com.bif.ethereumagent.config.EventConstants;
-import com.bif.util.FastJsonUtil;
-import com.bif.ethereumagent.vm.*;
+import com.bif.ethereumagent.vm.BlockInfoVM;
+import com.bif.nettyclient.NettyClientConnector;
+import com.bif.service.BaseDataHandler;
+import com.bif.vm.CommonRequest;
+import com.bif.vm.CommonResponse;
+import com.bif.vm.Request;
+import com.bif.vm.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +28,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Component
-public class DataHandler {
+public class DataHandler extends BaseDataHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(DataHandler.class);
     private final String chainType;
@@ -100,7 +104,7 @@ public class DataHandler {
         commonRequest.setParams(blockInfoVM);
         //Request request = new Request("MESSAGE_ID_BLOCK_COUNT", chainType, chainId, nodeKey, "block", "pull", "");
         CommonResponse response = sendRequest(commonRequest);
-        logger.info("返回数据{}",response);
+        logger.info("返回数据{}", response);
 
     }
 
@@ -204,12 +208,6 @@ public class DataHandler {
     }
 
     public void syncBlock() {
-//        if (syncBlockNumber == null) {
-//            // 目前同步高度
-//            Request request = new Request("MESSAGE_ID_BLOCK_COUNT", chainType, chainId, nodeKey, "block", "pull", "");
-//            sendRequest(request);
-//            return;
-//        }
         int blockNumber = syncBlockNumber.get() + 1;
         if (bestBlockNumber.get() - blockNumber < 3) {
             return;
@@ -237,22 +235,6 @@ public class DataHandler {
         } catch (Exception e) {
             logger.error("", e);
         }
-    }
-
-    private Response sendRequest(Request request) {
-        Response response = nettyClientConnector.requestSync(request,
-                FastJsonUtil::toString,
-                (json) -> FastJsonUtil.toObject((String) json, Response.class));
-        logger.info("request:{},response{}", request, response);
-        return response;
-    }
-
-    private CommonResponse sendRequest(CommonRequest request) {
-        CommonResponse response = nettyClientConnector.requestSync(request,
-                FastJsonUtil::toString,
-                (json) -> FastJsonUtil.toObject((String) json, CommonResponse.class));
-        logger.info("request:{},response{}", request, response);
-        return response;
     }
 
 }
