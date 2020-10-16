@@ -1,7 +1,7 @@
 package com.bif.ethereumagent.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bif.ethereumagent.client.NettyClientConnector;
+import com.bif.nettyclient.NettyClientConnector;
 import com.bif.ethereumagent.config.ApplicationProperties;
 import com.bif.ethereumagent.config.EventConstants;
 import com.bif.util.FastJsonUtil;
@@ -101,27 +101,7 @@ public class DataHandler {
         //Request request = new Request("MESSAGE_ID_BLOCK_COUNT", chainType, chainId, nodeKey, "block", "pull", "");
         CommonResponse response = sendRequest(commonRequest);
         logger.info("返回数据{}",response);
-        //todo 后续数据待与adapter调整
-//        if (response == null) {
-//            return;
-//        }
-//        switch (response.getMessage()) {
-//            case "success":
-//                if ("MESSAGE_ID_BLOCK_NUMBER".equalsIgnoreCase(response.messageId)) {
-//                    // DataHandler.bestBlockNumber = Integer.valueOf(response.data);
-//                } else if ("MESSAGE_ID_BLOCK_COUNT".equalsIgnoreCase(response.messageId) || "MESSAGE_ID_BLOCK".equalsIgnoreCase(response.messageId)) {
-//                    logger.info(JSONObject.toJSONString(response));
-//                    DataHandler.syncBlockNumber.set("".equals(response.data) ? 0 : Integer.parseInt(response.data));
-//                    syncBlock();
-//                }
-//                break;
-//            case "failed":
-//                logger.error(FastJsonUtil.toString(response));
-//                break;
-//            case "invalid":
-//                logger.warn(FastJsonUtil.toString(response));
-//                break;
-//        }
+
     }
 
     /**

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: bitcoin-${application.agent.node-id}
+  profiles:
+    #    active: @profile.active@
+    active: @environment@
+
+server:
+  port: 7000
+
+application:
+  server:
+    host: localhost
+    port: 3000
+    connect-timeout: 50000
+  bitcoin:
+    address: http://bitcoin:bitcoin@8.210.194.147:18332
+  chain:
+    type: bitcoin
+    id: 1
+  node:
+    key: node-key-bitcoin
+    id: test
+    access-token: AUTH
+  agent:
+    node-id: bitcoin

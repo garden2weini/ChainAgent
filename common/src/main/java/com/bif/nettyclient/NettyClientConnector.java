@@ -1,4 +1,4 @@
-package com.bif.ethereumagent.client;
+package com.bif.nettyclient;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;

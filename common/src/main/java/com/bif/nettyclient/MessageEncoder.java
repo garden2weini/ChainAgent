@@ -1,4 +1,4 @@
-package com.bif.ethereumagent.client;
+package com.bif.nettyclient;
 
 public interface MessageEncoder<R> {
 
