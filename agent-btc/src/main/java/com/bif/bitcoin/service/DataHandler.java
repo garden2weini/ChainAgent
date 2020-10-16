@@ -89,10 +89,13 @@ public class DataHandler extends BaseDataHandler {
         // 7. 获取算力难度
         BigDecimal difficulty = btcClient.getDifficulty();
         // 8. Missing获取链交易状态数据(getchaintxstats)
+
         // 9. 获取区块链概览信息
         BitcoindRpcClient.BlockChainInfo blockChainInfo = btcClient.getBlockChainInfo();
         // 10. Missing获取内存使用(getmempoolinfo)
+
         // 11. none获取当前节点信息(getnodeaddresses)
+
         // 12. 获取utxo信息
         txId = "";
         // vout : The output index number (vout) of the output within the transaction
