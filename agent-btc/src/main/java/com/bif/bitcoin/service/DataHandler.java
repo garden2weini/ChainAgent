@@ -1,5 +1,6 @@
 package com.bif.bitcoin.service;
 
+import com.bif.bitcoin.client.BitcoinClientX;
 import com.bif.bitcoin.config.ApplicationProperties;
 import com.bif.nettyclient.NettyClientConnector;
 import com.bif.service.BaseDataHandler;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 import wf.bitcoin.javabitcoindrpcclient.BitcoindRpcClient;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -57,12 +60,18 @@ public class DataHandler extends BaseDataHandler {
             bestBlockNumber = new AtomicInteger(btcClient.getBlockCount());
             Request request = new Request("MESSAGE_ID_BLOCK_NUMBER", chainType, chainId, nodeKey, "blockNumber", "push", bestBlockNumber.toString());
 
+            ArrayList address = ((BitcoinClientX)btcClient).getNodeAddresses();
+            LinkedHashMap memInfo = ((BitcoinClientX)btcClient).getMemoryInfo();
+            LinkedHashMap chainTxStats = ((BitcoinClientX)btcClient).getChainTxStats();
             //Response response = sendRequest(request);
             System.out.println("................................");
             //System.out.println(response.toString());
+            System.out.println(address);
+            System.out.println(memInfo);
+            System.out.println(chainTxStats);
             System.out.println(request);
             System.out.println("................................");
-            this.tmp();
+            //this.tmp();
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -92,10 +101,10 @@ public class DataHandler extends BaseDataHandler {
 
         // 9. 获取区块链概览信息
         BitcoindRpcClient.BlockChainInfo blockChainInfo = btcClient.getBlockChainInfo();
-        // 10. Missing获取内存使用(getmempoolinfo)
-
-        // 11. none获取当前节点信息(getnodeaddresses)
-
+        // 10. 获取内存使用(getmempoolinfo)
+        LinkedHashMap memInfo = ((BitcoinClientX)btcClient).getMemoryInfo();
+        // 11. 获取当前节点信息(getnodeaddresses)
+        ArrayList addresses = ((BitcoinClientX)btcClient).getNodeAddresses();
         // 12. 获取utxo信息
         txId = "";
         // vout : The output index number (vout) of the output within the transaction
