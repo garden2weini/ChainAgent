@@ -15,6 +15,7 @@ import wf.bitcoin.javabitcoindrpcclient.BitcoindRpcClient;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -51,10 +52,52 @@ public class DataHandler extends BaseDataHandler {
     }
 
     /**
-     * 客户端版本
+     * 区块链获取逻辑梳理
      */
-    @Scheduled(fixedDelay = 5_000, initialDelay = 5_000)
-    private void getBlockNumber() {
+    @Scheduled(fixedDelay = 600_000, initialDelay = 1_000)
+    private void tmpLogical() {
+        // 获取当前区块链链接数
+        long connCount = btcClient.getConnectionCount();
+        System.out.println("ConnectionCount:" + connCount);
+        // 获取当前算力难度
+        BigDecimal difficulty = btcClient.getDifficulty();
+        System.out.println("Difficulty:" + difficulty);
+
+        // 获取最新区块hash
+        String lastBlockHash = btcClient.getBestBlockHash();
+        System.out.println("BestBlockHash:" + lastBlockHash);
+        // 2 获取最新区块数
+        int blockCount = btcClient.getBlockCount();
+        System.out.println("BlockCount:" + blockCount);
+        // 4 获取区块信息(高度 or Hash)
+        BitcoindRpcClient.Block block = btcClient.getBlock(blockCount);
+        // NOTE: 从最新区块开始向前获取所有区块
+        while(null != block) {
+            System.out.println("Block:" + block);
+            // 获取当前区块Hash
+            String blockHash = block.hash();
+            System.out.println("blockHash:" + lastBlockHash);
+            // 获取区块中的所有交易信息
+            List<String> txs = block.tx();
+            for(int i = 0; i< txs.size(); i++) {
+                String tx = txs.get(i);
+                //System.out.println(block.height() + ":" + tx);
+                // to get transaction info
+                BitcoindRpcClient.RawTransaction rawTransaction = ((BitcoinClientX)btcClient).getRawTransactionX(tx, blockHash);
+                System.out.println(block.height() + ":" + "RawTransaction:" + rawTransaction);
+
+            }
+
+            block = block.previous();
+        }
+
+    }
+
+    /**
+     * sandbox
+     */
+    //@Scheduled(fixedDelay = 5_000, initialDelay = 5_000)
+    private void sandbox() {
         try {
             // 区块链最新高度
             bestBlockNumber = new AtomicInteger(btcClient.getBlockCount());
@@ -71,7 +114,7 @@ public class DataHandler extends BaseDataHandler {
             System.out.println(chainTxStats);
             System.out.println(request);
             System.out.println("................................");
-            //this.tmp();
+
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -79,36 +122,44 @@ public class DataHandler extends BaseDataHandler {
 
     /**
      * NOTE: 对照需求列出所需要的链接口
+     * NOTE：just调研接口 不能执行
+     *
      */
     private void tmp() {
         // 1 获取最新区块hash
         String lastBlockHash = btcClient.getBestBlockHash();
+        System.out.println("BestBlockHash:" + lastBlockHash);
         // 2 获取最新区块数
         int blockCount = btcClient.getBlockCount();
+        System.out.println("BlockCount:" + blockCount);
         // 3 获取某区块高度的区块Hash
         String blockHash = btcClient.getBlockHash(100);
+        System.out.println("BlockHash:" + blockHash);
         // 4 获取区块信息(高度 or Hash)
         BitcoindRpcClient.Block block = btcClient.getBlock(100);
+        System.out.println("Block:" + block);
         // 5 获取交易信息...
         // txId: The TXID of the transaction containing the output to get, encoded as hex in RPC byte order
         String txId = "";
         BitcoindRpcClient.RawTransaction rawTransaction = btcClient.getRawTransaction(txId);
-        // 6. 获取区块链链接数
-        long connCount = btcClient.getConnectionCount();
-        // 7. 获取算力难度
-        BigDecimal difficulty = btcClient.getDifficulty();
-        // 8. Missing获取链交易状态数据(getchaintxstats)
-
+        System.out.println("RawTransaction:" + rawTransaction);
+        // 8. 获取链交易状态数据(getchaintxstats)
+        LinkedHashMap chainTxStats = ((BitcoinClientX)btcClient).getChainTxStats();
+        System.out.println("ChainTxStats:" + chainTxStats);
         // 9. 获取区块链概览信息
         BitcoindRpcClient.BlockChainInfo blockChainInfo = btcClient.getBlockChainInfo();
+        System.out.println("BlockChainInfo:" + blockChainInfo);
         // 10. 获取内存使用(getmempoolinfo)
         LinkedHashMap memInfo = ((BitcoinClientX)btcClient).getMemoryInfo();
+        System.out.println("MemoryInfo:" + memInfo);
         // 11. 获取当前节点信息(getnodeaddresses)
         ArrayList addresses = ((BitcoinClientX)btcClient).getNodeAddresses();
+        System.out.println("NodeAddresses:" + addresses);
         // 12. 获取utxo信息
         txId = "";
         // vout : The output index number (vout) of the output within the transaction
         long vout = 1;
         BitcoindRpcClient.TxOut txOut = btcClient.getTxOut(txId, vout);
+        System.out.println("TxOut:" + txOut);
     }
 }

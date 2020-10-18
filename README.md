@@ -4,7 +4,18 @@
 以太坊Agent
 
 ## BTC Agent
-。。。
+Bitcoin Agent
+### 业务逻辑梳理
+~~~
+# 获取某个区块的信息
+curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblock", "params": ["000000000058b74204bb9d59128e7975b683ac73910660b6531e59523fb4a102"] }' -H 'content-type: application/json;' http://8.210.194.147:18332
+# 获取区块中某个交易的信息getrawtransaction()
+curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getrawtransaction", "params": ["30aa4a6efa4b692f1d879bfd15cd2da12d39b9413bf9e718251fb3e1d0136725",true,"000000000058b74204bb9d59128e7975b683ac73910660b6531e59523fb4a102"] }' -H 'content-type: application/json;' http://8.210.194.147:18332
+~~~
+
+## EOS Agent
+ref: https://github.com/espritblock/eos4j
+ref: https://eos.readthedocs.io/zh_CN/latest/API/EOSIO-RPC/
 
 ## REF
 ### BTC
