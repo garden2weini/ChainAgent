@@ -55,7 +55,7 @@ public class DataHandler extends BaseDataHandler {
      * 区块链获取逻辑梳理
      */
     @Scheduled(fixedDelay = 600_000, initialDelay = 1_000)
-    private void tmpLogical() {
+    private void tmpBaseLogical() {
         // 获取当前区块链链接数
         long connCount = btcClient.getConnectionCount();
         System.out.println("ConnectionCount:" + connCount);
@@ -66,28 +66,29 @@ public class DataHandler extends BaseDataHandler {
         // 获取最新区块hash
         String lastBlockHash = btcClient.getBestBlockHash();
         System.out.println("BestBlockHash:" + lastBlockHash);
-        // 2 获取最新区块数
+        // 获取最新区块数
         int blockCount = btcClient.getBlockCount();
         System.out.println("BlockCount:" + blockCount);
-        // 4 获取区块信息(高度 or Hash)
+        // 获取区块信息(高度 or Hash)
         BitcoindRpcClient.Block block = btcClient.getBlock(blockCount);
-        // NOTE: 从最新区块开始向前获取所有区块
+        // NOTE: 从最新区块开始向前获取所有区块。然后循环获取前一个区块，直到获取到创世区块
         while(null != block) {
-            System.out.println("Block:" + block);
+            //System.out.println("Block:" + block);
             // 获取当前区块Hash
             String blockHash = block.hash();
-            System.out.println("blockHash:" + lastBlockHash);
-            // 获取区块中的所有交易信息
+            //System.out.println("blockHash:" + lastBlockHash);
+            // 轮询获取区块中的所有交易信息
             List<String> txs = block.tx();
             for(int i = 0; i< txs.size(); i++) {
-                String tx = txs.get(i);
-                //System.out.println(block.height() + ":" + tx);
-                // to get transaction info
-                BitcoindRpcClient.RawTransaction rawTransaction = ((BitcoinClientX)btcClient).getRawTransactionX(tx, blockHash);
+                String txId = txs.get(i);
+                //System.out.println(block.height() + ":" + txId);
+                // 获取特定blockHash->txId的的交易信息
+                BitcoindRpcClient.RawTransaction rawTransaction = ((BitcoinClientX)btcClient).getRawTransactionX(txId, blockHash);
                 System.out.println(block.height() + ":" + "RawTransaction:" + rawTransaction);
 
             }
 
+            // 获取前一个区块，并进入下一个循环
             block = block.previous();
         }
 
@@ -121,9 +122,7 @@ public class DataHandler extends BaseDataHandler {
     }
 
     /**
-     * NOTE: 对照需求列出所需要的链接口
-     * NOTE：just调研接口 不能执行
-     *
+     * NOTE: 对照需求列出所需要的链接口。just调研接口 不能执行
      */
     private void tmp() {
         // 1 获取最新区块hash
