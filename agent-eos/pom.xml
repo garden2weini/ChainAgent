@@ -64,24 +64,26 @@
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.EOSEssentials</groupId>
+            <artifactId>eos-java-rpc-wrapper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.qyvlik</groupId>
+            <artifactId>io.eblock.eos-eos4j</artifactId>
+        </dependency>
         <!--
         <dependency>
             <groupId>io.eblock.eos</groupId>
             <artifactId>eos4j</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github-eos</groupId>
-            <artifactId>eos-java-rpc-wrapper</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>one.block</groupId>
             <artifactId>eosiojavarpcprovider</artifactId>
         </dependency>
         -->
-        <dependency>
-            <groupId>party.52it</groupId>
-            <artifactId>Bip44ForJava</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.bif.chainagent</groupId>
             <artifactId>common</artifactId>

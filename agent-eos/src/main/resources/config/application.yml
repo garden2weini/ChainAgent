@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: eos-${application.agent.node-id}
+  profiles:
+    #    active: @profile.active@
+    active: @environment@
+
+server:
+  port: 7000
+
+application:
+  # 数据收集器服务器(Adapter)
+  server:
+    host: 106.75.2.245
+    port: 8083
+    connect-timeout: 50000
+  chain-entry:
+    address: https://api-kylin.eosasia.one
+  chain:
+    type: eos
+    id: 1
+  node:
+    key: node-key-eos
+    id: test
+    access-token: AUTH
+  agent:
+    node-id: eos

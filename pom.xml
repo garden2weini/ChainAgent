@@ -27,6 +27,14 @@
 		<docker.image.prefix>bif</docker.image.prefix>
 	</properties>
 
+	<repositories>
+		<!-- just for eos-java-rpc-wrapper -->
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -123,14 +131,14 @@
 			</dependency>
 			<!-- EOS client -->
 			<dependency>
-				<groupId>io.eblock.eos</groupId>
-				<artifactId>eos4j</artifactId>
+				<groupId>io.github.qyvlik</groupId>
+				<artifactId>io.eblock.eos-eos4j</artifactId>
 				<version>1.0.1</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github-eos</groupId>
+				<groupId>com.github.EOSEssentials</groupId>
 				<artifactId>eos-java-rpc-wrapper</artifactId>
-				<version>1.0</version>
+				<version>master</version>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/one.block/eosiojava -->
 			<dependency>
@@ -139,11 +147,7 @@
 				<version>0.1.2</version>
 				<type>pom</type>
 			</dependency>
-			<dependency>
-				<groupId>party.52it</groupId>
-				<artifactId>Bip44ForJava</artifactId>
-				<version>1.0.0</version>
-			</dependency>
+
 			<dependency>
 				<groupId>one.block</groupId>
 				<artifactId>eosiojavarpcprovider</artifactId>

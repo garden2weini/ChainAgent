@@ -14,10 +14,11 @@ curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "
 ~~~
 
 ## EOS Agent
-ref: https://github.com/espritblock/eos4j
-ref: https://eos.readthedocs.io/zh_CN/latest/API/EOSIO-RPC/
 
 ## REF
+### EOS
+- [eos-java-rpc-wrapper](https://blog.csdn.net/liu1765686161/article/details/82180070)
+
 ### BTC
 #### 获取链交易状态数据
 ~~~
