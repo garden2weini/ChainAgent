@@ -28,11 +28,28 @@
 	</properties>
 
 	<repositories>
+		<repository>
+			<id>JCenter</id>
+			<url>https://jcenter.bintray.com/</url>
+		</repository>
+		<repository>
+			<id>aliyun</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>google</id>
+			<url>https://maven.google.com/</url>
+		</repository>
 		<!-- just for eos-java-rpc-wrapper -->
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
+		<!--
+		<repository>
+			<id>mvnrepository</id>
+			<url>https://mvnrepository.com</url>
+		</repository>-->
 	</repositories>
 
 	<dependencyManagement>
@@ -140,18 +157,27 @@
 				<artifactId>eos-java-rpc-wrapper</artifactId>
 				<version>master</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/one.block/eosiojava -->
 			<dependency>
 				<groupId>one.block</groupId>
 				<artifactId>eosiojava</artifactId>
 				<version>0.1.2</version>
 				<type>pom</type>
 			</dependency>
-
 			<dependency>
 				<groupId>one.block</groupId>
 				<artifactId>eosiojavarpcprovider</artifactId>
 				<version>0.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>one.block</groupId>
+				<artifactId>eosiojavaandroidabieosserializationprovider</artifactId>
+				<version>0.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>androidx.appcompat</groupId>
+				<artifactId>appcompat</artifactId>
+				<version>1.0.0-beta01</version>
+				<scope>runtime</scope>
 			</dependency>
 			<!-- Chains Client end -->
 

@@ -6,6 +6,7 @@ import com.bif.nettyclient.NettyClientConnector;
 import io.eblock.eos4j.Rpc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URISyntaxException;
 
@@ -22,6 +23,12 @@ public class WebConfiguration {
     public Rpc eosRpc(ApplicationProperties properties) {
         Rpc eosRpc = new Rpc(properties.getChainEntry().getAddress());
         return eosRpc;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate;
     }
 
     @Bean(destroyMethod = "shutdown")

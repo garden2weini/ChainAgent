@@ -14,10 +14,19 @@ curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "
 ~~~
 
 ## EOS Agent
+~~~
+# chain/get_info
+curl -X GET -H 'Content-Type:application/json' https://api-kylin.eosasia.one/v1/chain/get_info
+# chain/get_block
+curl -X POST -H 'Content-Type:application/json' --data '{"block_num_or_id":"07c5cd7598c2f7ee92e8e72ec4fb5d258d13fb968636280883f24272412f7d63"}' https://api-kylin.eosasia.one/v1/chain/get_block
+~~~
 
 ## REF
 ### EOS
 - [eos-java-rpc-wrapper](https://blog.csdn.net/liu1765686161/article/details/82180070)
+- [EOS区块链开发指南](http://blog.eosdata.io/)
+- [EOS Chain API](https://developers.eos.io/manuals/eos/latest/nodeos/plugins/chain_api_plugin/api-reference/index)
+
 
 ### BTC
 #### 获取链交易状态数据

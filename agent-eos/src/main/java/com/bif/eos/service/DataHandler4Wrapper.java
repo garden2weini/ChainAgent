@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Try to use eos-java-rpc-wrapper.
+ * Try to use one.block.eosiojava...
  * <dependency>
  *  <groupId>com.github.EOSEssentials</groupId>
  *  <artifactId>eos-java-rpc-wrapper</artifactId>
@@ -26,5 +27,10 @@ public class DataHandler4Wrapper {
         /* Get the head block */
         Block block = eosApiRestClient.getBlock(eosApiRestClient.getChainInfo().getHeadBlockId());
         System.out.println("HeadBlock:" + block);
+    }
+
+    private void testEosIo() {
+
+        //IRPCProvider rpcProvider = new EosioJavaRpcProviderImpl("https://baseurl.com/v1/");
     }
 }
