@@ -2,6 +2,7 @@ package com.bif.eos.config;
 
 import client.EosApiClientFactory;
 import client.EosApiRestClient;
+import com.bif.eos.client.EosClient;
 import com.bif.nettyclient.NettyClientConnector;
 import io.eblock.eos4j.Rpc;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +27,9 @@ public class WebConfiguration {
     }
 
     @Bean
-    public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate;
+    public EosClient eosClient(ApplicationProperties properties) {
+        EosClient eosClient = new EosClient(properties.getChainEntry().getAddress());
+        return eosClient;
     }
 
     @Bean(destroyMethod = "shutdown")

@@ -1,10 +1,12 @@
 package com.bif.eos.service;
 
+import com.bif.eos.client.EosClient;
 import com.bif.eos.config.ApplicationProperties;
+import com.bif.eos.vm.Block;
+import com.bif.eos.vm.TransactionReceipt;
 import com.bif.nettyclient.NettyClientConnector;
 import com.bif.service.BaseDataHandler;
 import io.eblock.eos4j.Rpc;
-import io.eblock.eos4j.api.vo.Block;
 import io.eblock.eos4j.api.vo.ChainInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +55,7 @@ public class DataHandler extends BaseDataHandler {
     Rpc eosRpc;
 
     @Autowired
-    RestTemplate restTemplate;
+    EosClient eosClient;
 
     @Autowired
     private ApplicationProperties properties;
@@ -78,19 +80,29 @@ public class DataHandler extends BaseDataHandler {
         System.out.println("ChainInfo.HeadBlockId:" + headBlockId);
         System.out.println("ChainInfo.HeadBlockNum:" + headBlockNum);
         System.out.println("ChainInfo.ChainId:" + chainId);
-        Block block = eosRpc.getBlock(headBlockId);
+        Block block = eosClient.getBlock(headBlockId);
+
         while(null != block) {
             String actionMroot = block.getActionMroot();
             String transaction = block.getTransactionMroot();
             String previous = block.getPrevious();
+            TransactionReceipt[] txes = block.getTransactions();
             System.out.println("Block.ActionMroot:" + actionMroot);
             System.out.println("Block.TransactionMroot:" + transaction);
             System.out.println("Block.Previous:" + previous);
-            tmp(block.getId());
-
+            for(int i = 0; i < block.getTransactions().length; i++) {
+                System.out.println("...block.transactions:" + block.getTransactions()[i].getCpuUsageUs());
+                System.out.println("...block.transactions:" + block.getTransactions()[i].getNetUsageWords());
+                System.out.println("...block.transactions:" + block.getTransactions()[i].getStatus());
+                System.out.println("...block.transactions:" + block.getTransactions()[i].getTrx());
+            }
             // TODO 可能用这种方式判断获取块完毕，未确认。maybe previous is empty!
             try {
-                block = eosRpc.getBlock(previous);
+                if(!previous.isEmpty()) {
+                    block = eosClient.getBlock(previous);
+                } else {
+                    block = null;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 block = null;
@@ -98,21 +110,7 @@ public class DataHandler extends BaseDataHandler {
         }
     }
 
-    private void tmp(String blockId){
-        String url = "https://api-kylin.eosasia.one/v1/chain/get_block";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Map<String, String> values = new HashMap<>();
-        //利用multiValueMap插入需要传输的数据
-        values.put("block_num_or_id",blockId);
-
-        HttpEntity<Map<String, String>> httpEntity = new HttpEntity<>(values,headers);
-        //访问接口并获取返回值
-        ResponseEntity<Map> responseEntity = restTemplate.postForEntity(url,httpEntity, Map.class);
-        //输出接口所返回过来的值
-        System.out.println("...." + responseEntity.getBody());
-    }
 
 
 }
