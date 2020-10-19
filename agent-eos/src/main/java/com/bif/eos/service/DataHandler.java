@@ -11,22 +11,9 @@ import io.eblock.eos4j.api.vo.ChainInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -86,7 +73,6 @@ public class DataHandler extends BaseDataHandler {
             String actionMroot = block.getActionMroot();
             String transaction = block.getTransactionMroot();
             String previous = block.getPrevious();
-            TransactionReceipt[] txes = block.getTransactions();
             System.out.println("Block.ActionMroot:" + actionMroot);
             System.out.println("Block.TransactionMroot:" + transaction);
             System.out.println("Block.Previous:" + previous);

@@ -10,14 +10,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-public class BitcoinClientX extends BitcoinJSONRPCClient {
-    public BitcoinClientX(String rpcUrl) throws MalformedURLException {
+public class BitcoinJsonRpcClientX extends BitcoinJSONRPCClient implements BitcoindRpcClientX {
+    public BitcoinJsonRpcClientX(String rpcUrl) throws MalformedURLException {
         super(new URL(rpcUrl));
     }
 
     public ArrayList getNodeAddresses() {
         return (ArrayList) query("getnodeaddresses");
     }
+
+    @Override
+    public Long getDifficultyX() {
+        return (Long) query("getdifficulty");
+    }
+
 
     public LinkedHashMap getMemoryInfo() {
         return (LinkedHashMap) query("getmemoryinfo");

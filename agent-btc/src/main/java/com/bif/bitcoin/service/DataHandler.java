@@ -1,6 +1,7 @@
 package com.bif.bitcoin.service;
 
-import com.bif.bitcoin.client.BitcoinClientX;
+import com.bif.bitcoin.client.BitcoinJsonRpcClientX;
+import com.bif.bitcoin.client.BitcoindRpcClientX;
 import com.bif.bitcoin.config.ApplicationProperties;
 import com.bif.nettyclient.NettyClientConnector;
 import com.bif.service.BaseDataHandler;
@@ -38,7 +39,7 @@ public class DataHandler extends BaseDataHandler {
     private NettyClientConnector nettyClientConnector;
 
     @Autowired
-    private BitcoindRpcClient btcClient;
+    private BitcoindRpcClientX btcClient;
 
     @Autowired
     private ApplicationProperties properties;
@@ -60,7 +61,7 @@ public class DataHandler extends BaseDataHandler {
         long connCount = btcClient.getConnectionCount();
         System.out.println("ConnectionCount:" + connCount);
         // 获取当前算力难度
-        BigDecimal difficulty = btcClient.getDifficulty();
+        Long difficulty = btcClient.getDifficultyX();
         System.out.println("Difficulty:" + difficulty);
 
         // 获取最新区块hash
@@ -76,6 +77,8 @@ public class DataHandler extends BaseDataHandler {
             //System.out.println("Block:" + block);
             // 获取当前区块Hash
             String blockHash = block.hash();
+            BigDecimal diff = block.difficulty();
+            System.out.println("...blockDifficulty:" + diff);
             //System.out.println("blockHash:" + lastBlockHash);
             // 轮询获取区块中的所有交易信息
             List<String> txs = block.tx();
@@ -83,7 +86,7 @@ public class DataHandler extends BaseDataHandler {
                 String txId = txs.get(i);
                 //System.out.println(block.height() + ":" + txId);
                 // 获取特定blockHash->txId的的交易信息
-                BitcoindRpcClient.RawTransaction rawTransaction = ((BitcoinClientX)btcClient).getRawTransactionX(txId, blockHash);
+                BitcoindRpcClient.RawTransaction rawTransaction = btcClient.getRawTransactionX(txId, blockHash);
                 System.out.println(block.height() + ":" + "RawTransaction:" + rawTransaction);
 
             }
@@ -104,9 +107,9 @@ public class DataHandler extends BaseDataHandler {
             bestBlockNumber = new AtomicInteger(btcClient.getBlockCount());
             Request request = new Request("MESSAGE_ID_BLOCK_NUMBER", chainType, chainId, nodeKey, "blockNumber", "push", bestBlockNumber.toString());
 
-            ArrayList address = ((BitcoinClientX)btcClient).getNodeAddresses();
-            LinkedHashMap memInfo = ((BitcoinClientX)btcClient).getMemoryInfo();
-            LinkedHashMap chainTxStats = ((BitcoinClientX)btcClient).getChainTxStats();
+            ArrayList address = btcClient.getNodeAddresses();
+            LinkedHashMap memInfo = btcClient.getMemoryInfo();
+            LinkedHashMap chainTxStats = btcClient.getChainTxStats();
             //Response response = sendRequest(request);
             System.out.println("................................");
             //System.out.println(response.toString());
@@ -143,16 +146,16 @@ public class DataHandler extends BaseDataHandler {
         BitcoindRpcClient.RawTransaction rawTransaction = btcClient.getRawTransaction(txId);
         System.out.println("RawTransaction:" + rawTransaction);
         // 8. 获取链交易状态数据(getchaintxstats)
-        LinkedHashMap chainTxStats = ((BitcoinClientX)btcClient).getChainTxStats();
+        LinkedHashMap chainTxStats = btcClient.getChainTxStats();
         System.out.println("ChainTxStats:" + chainTxStats);
         // 9. 获取区块链概览信息
         BitcoindRpcClient.BlockChainInfo blockChainInfo = btcClient.getBlockChainInfo();
         System.out.println("BlockChainInfo:" + blockChainInfo);
         // 10. 获取内存使用(getmempoolinfo)
-        LinkedHashMap memInfo = ((BitcoinClientX)btcClient).getMemoryInfo();
+        LinkedHashMap memInfo = btcClient.getMemoryInfo();
         System.out.println("MemoryInfo:" + memInfo);
         // 11. 获取当前节点信息(getnodeaddresses)
-        ArrayList addresses = ((BitcoinClientX)btcClient).getNodeAddresses();
+        ArrayList addresses = btcClient.getNodeAddresses();
         System.out.println("NodeAddresses:" + addresses);
         // 12. 获取utxo信息
         txId = "";
