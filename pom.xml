@@ -15,6 +15,8 @@
 		<module>agent-btc</module>
 		<module>agent-eth</module>
 		<module>agent-eos</module>
+		<module>agent-ont</module>
+		<module>agent-fabric</module>
 	</modules>
 
 	<properties>
@@ -44,6 +46,10 @@
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
+		</repository>
+		<repository>
+			<id>ontology-java-sdk-release</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 		<!--
 		<repository>
@@ -180,6 +186,34 @@
 				<scope>runtime</scope>
 			</dependency>
 			<!-- Chains Client end -->
+
+			<!-- https://mvnrepository.com/artifact/org.hyperledger.fabric-sdk-java/fabric-sdk-java -->
+			<dependency>
+				<groupId>org.hyperledger.fabric-sdk-java</groupId>
+				<artifactId>fabric-sdk-java</artifactId>
+				<version>2.2.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hyperledger.fabric</groupId>
+				<artifactId>fabric-gateway-java</artifactId>
+				<version>2.2.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-core</artifactId>
+				<version>3.3.0.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>io.micrometer</groupId>
+				<artifactId>micrometer-core</artifactId>
+				<version>1.6.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.ontio</groupId>
+				<artifactId>ontology-sdk-java</artifactId>
+				<version>1.10.0</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

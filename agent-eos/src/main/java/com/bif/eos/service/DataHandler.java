@@ -61,6 +61,7 @@ public class DataHandler extends BaseDataHandler {
     @Scheduled(fixedDelay = 6000_000, initialDelay = 1_000)
     private void tmpBaseLogical() {
         ChainInfo chainInfo = eosRpc.getChainInfo();
+        
         String headBlockId = chainInfo.getHeadBlockId();
         String headBlockNum = chainInfo.getHeadBlockNum();
         String chainId = chainInfo.getChainId();

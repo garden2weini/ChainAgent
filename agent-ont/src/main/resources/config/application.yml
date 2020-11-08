@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: ontology-${application.agent.node-id}
+  profiles:
+    #    active: @profile.active@
+    active: @environment@
+
+server:
+  port: 7000
+
+application:
+  server:
+    host: localhost
+    port: 3000
+    connect-timeout: 50000
+  chain-entry:
+    address: http://101.36.118.9:20336
+  chain:
+    type: ontology
+    id: ontology
+  node:
+    key: node-key-ontology
+    id: test1
+    access-token: AUTH
+  agent:
+    node-id: ontology

@@ -2,6 +2,7 @@
 
 ## ETH Agent
 以太坊Agent
+REF: https://geth.ethereum.org/docs/getting-started
 
 ## BTC Agent
 Bitcoin Agent
@@ -14,6 +15,7 @@ curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "
 ~~~
 
 ## EOS Agent
+REF: https://eosnetworkmonitor.io/#
 ~~~
 # chain/get_info
 curl -X GET -H 'Content-Type:application/json' https://api-kylin.eosasia.one/v1/chain/get_info
@@ -21,11 +23,36 @@ curl -X GET -H 'Content-Type:application/json' https://api-kylin.eosasia.one/v1/
 curl -X POST -H 'Content-Type:application/json' --data '{"block_num_or_id":"07c5cd7598c2f7ee92e8e72ec4fb5d258d13fb968636280883f24272412f7d63"}' https://api-kylin.eosasia.one/v1/chain/get_block
 ~~~
 
+## Fabric Agent
+- Low Level API: https://github.com/hyperledger/fabric-sdk-java
+- High-level API: https://github.com/hyperledger/fabric-gateway-java
+
+## ONT Agent
+REF: https://dev-docs.ont.io/#/docs-cn/ontology-cli/05-rpc-specification?id=_9-getversion
+~~~
+# 获取当前节点最高区块的哈希值
+curl -X POST -H 'Content-Type:application/json' --data '{"jsonrpc":"2.0", "method":"getbestblockhash", "params":[],"id":1}' http://localhost:20336
+# 获取当前连接节点的版本
+curl -X POST -H 'Content-Type:application/json' --data '{"jsonrpc": "2.0","method": "getversion","params": [],"id": 3}' http://localhost:20336
+~~~
+
+## XRP
+REF: https://xrpscan.com/
+
 ## REF
+### ETH
+~~~
+curl -X POST http://<GETH_IP_ADDRESS>:8545 \
+    -H "Content-Type: application/json" \
+   --data'{"jsonrpc":"2.0", "method":"<API_METHOD>", "params":[], "id":1}'
+
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}' http://localhost:8545
+~~~
+
 ### EOS
 - [eos-java-rpc-wrapper](https://blog.csdn.net/liu1765686161/article/details/82180070)
 - [EOS区块链开发指南](http://blog.eosdata.io/)
-- [EOS Chain API](https://developers.eos.io/manuals/eos/latest/nodeos/plugins/chain_api_plugin/api-reference/index)
+- [*EOS Chain API*](https://developers.eos.io/manuals/eos/latest/nodeos/plugins/chain_api_plugin/api-reference/index)
 
 
 ### BTC

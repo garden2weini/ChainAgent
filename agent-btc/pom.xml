@@ -76,11 +76,6 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>wf.bitcoin</groupId>
-            <artifactId>bitcoin-rpc-client</artifactId>
-            <version>1.2.1</version>
-        </dependency>
     </dependencies>
 
     <build>
