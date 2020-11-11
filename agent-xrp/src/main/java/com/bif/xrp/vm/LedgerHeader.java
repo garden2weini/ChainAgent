@@ -30,7 +30,7 @@ public class LedgerHeader {
     @JsonProperty("ledger_hash")
     private String ledgerHash;
     @JsonProperty("ledger_index")
-    private String ledgerIndex;
+    private Integer ledgerIndex;
     @JsonProperty("parent_close_time")
     private Integer parentCloseTime;
     @JsonProperty("parent_hash")
@@ -121,11 +121,11 @@ public class LedgerHeader {
         this.ledgerHash = ledgerHash;
     }
 
-    public String getLedgerIndex() {
+    public Integer getLedgerIndex() {
         return ledgerIndex;
     }
 
-    public void setLedgerIndex(String ledgerIndex) {
+    public void setLedgerIndex(Integer ledgerIndex) {
         this.ledgerIndex = ledgerIndex;
     }
 

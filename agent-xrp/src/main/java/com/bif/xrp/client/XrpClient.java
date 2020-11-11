@@ -32,24 +32,29 @@ public class XrpClient {
 
     public static void main(String[] args) {
         XrpClient client = new XrpClient("https://s1.ripple.com:51234");
-
-
-        JSONObject param = new JSONObject();
         ServerState serverState = client.serverState();
         //System.out.println("ServerState:" + serverState.getServerState() +"\n" + serverState.getCompleteLedgers());
-        LedgerHeader ledger;
 
         Integer curIdx = client.currentLedger();
-
-        for (Integer ledgerIndex = curIdx; ledgerIndex >= 0; ledgerIndex--) {
+        LedgerHeader ledger = client.ledger(null, false, true);
+        System.out.println("Current Ledger Index:" + curIdx);
+        System.out.println("Ledger Index:" + ledger.getLedgerIndex());
+        Integer ledgerIdx = ledger.getLedgerIndex();
+        for (Integer ledgerIndex = ledgerIdx; ledgerIndex >= 0; ledgerIndex--) {
             ledger = client.ledger(ledgerIndex.toString(), true, false);
             System.out.println("Ledger Index: " + ledgerIndex);
 
             String[] transHashs = ledger.getTransactions();
-            if(transHashs == null) continue;
+
+            if(transHashs == null || transHashs.length==0 ) {
+                continue;
+            }
+
             for(int i = 0; i< transHashs.length; i++) {
+                System.out.println("TransHash:" + transHashs[i]);
                 client.tx(transHashs[i]);
             }
+
         }
 
     }
@@ -70,10 +75,15 @@ public class XrpClient {
 
         LedgerHeader ledger = new LedgerHeader();
         HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("ledger_index", ledgerIndex);
+        if("validated".equals(ledgerIndex) || "closed".equals(ledgerIndex) || "current".equals(ledgerIndex)) {
+            params.put("ledger_index", ledgerIndex);
+        } else {
+            params.put("ledger_index", Integer.valueOf(ledgerIndex));
+        }
         params.put("accounts", false);
         params.put("full", false);
         params.put("transactions", transactions);
+        //params.put("queue", queue);
         params.put("expand", false);
         params.put("owner_funds", false);
         JSONObject result = doRequest4Json("ledger", params);
