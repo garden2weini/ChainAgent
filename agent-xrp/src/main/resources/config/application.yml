@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: xrp-${application.agent.node-id}
+  profiles:
+    #    active: @profile.active@
+    active: @environment@
+
+server:
+  port: 7000
+
+application:
+  server:
+    host: localhost
+    port: 3000
+    connect-timeout: 50000
+  chain-entry:
+    address: https://s1.ripple.com:51234
+  chain:
+    type: xrp
+    id: xrp
+  node:
+    key: node-key-xrp
+    id: test1
+    access-token: AUTH
+  agent:
+    node-id: xrp

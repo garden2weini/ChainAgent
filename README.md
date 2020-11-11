@@ -1,5 +1,5 @@
 # 区块链Agent
-
+REF: [JSON2Java](http://www.json.cn/json/json2java.html)
 ## ETH Agent
 以太坊Agent
 REF: https://geth.ethereum.org/docs/getting-started
@@ -29,6 +29,7 @@ curl -X POST -H 'Content-Type:application/json' --data '{"block_num_or_id":"07c5
 
 ## ONT Agent
 REF: https://dev-docs.ont.io/#/docs-cn/ontology-cli/05-rpc-specification?id=_9-getversion
+REF: https://ontio.github.io/documentation/ontology_java_sdk_interface_zh.html
 ~~~
 # 获取当前节点最高区块的哈希值
 curl -X POST -H 'Content-Type:application/json' --data '{"jsonrpc":"2.0", "method":"getbestblockhash", "params":[],"id":1}' http://localhost:20336
@@ -38,6 +39,9 @@ curl -X POST -H 'Content-Type:application/json' --data '{"jsonrpc": "2.0","metho
 
 ## XRP
 REF: https://xrpscan.com/
+REF: https://xrpl.org/data-api.html#api-method-reference
+REF: https://xrpl.org/xrp-api.html, https://livenet.xrpl.org/
+REF: https://blog.csdn.net/liu1765686161/article/details/82492937
 
 ## REF
 ### ETH

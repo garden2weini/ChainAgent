@@ -16,6 +16,7 @@
 		<module>agent-eth</module>
 		<module>agent-eos</module>
 		<module>agent-ont</module>
+		<module>agent-xrp</module>
 		<module>agent-fabric</module>
 	</modules>
 
