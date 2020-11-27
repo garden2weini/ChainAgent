@@ -14,7 +14,8 @@ application:
     port: 3000
     connect-timeout: 50000
   ethereum:
-    address: https://mainnet.infura.io/v3/06f4ff56379b4a698633ee05f5ff138e
+    #address: https://mainnet.infura.io/v3/06f4ff56379b4a698633ee05f5ff138e
+    address: http://118.26.38.241:8545
   chain:
     type: ethereum
     id: ethereum

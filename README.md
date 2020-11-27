@@ -1,5 +1,7 @@
-# 区块链Agent
+# 区块链Agent-联盟链
+
 REF: [JSON2Java](http://www.json.cn/json/json2java.html)
+
 ## ETH Agent
 以太坊Agent
 REF: https://geth.ethereum.org/docs/getting-started
@@ -46,11 +48,15 @@ REF: https://blog.csdn.net/liu1765686161/article/details/82492937
 ## REF
 ### ETH
 ~~~
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"],"id":1}' http://localhost:8545
 curl -X POST http://<GETH_IP_ADDRESS>:8545 \
     -H "Content-Type: application/json" \
    --data'{"jsonrpc":"2.0", "method":"<API_METHOD>", "params":[], "id":1}'
 
 curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":67}' http://localhost:8545
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":67}' http://localhost:8545
+curl -X POST -H "Content-Type: application/json" --data-raw '{"network":"btc","from":1540707545,"to":1542793945,"amount":1000000,"currency":"usd"}’ http://www.tokenview.com:8088/tx/unusual/amount/1/10
+curl -X POST -H "Content-Type: application/json" --data-raw '{"network":"btc"}' http://www.tokenview.com:8088/tx/unusual/amount/1/10
 ~~~
 
 ### EOS

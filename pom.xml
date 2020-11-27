@@ -12,12 +12,15 @@
 
 	<modules>
 		<module>common</module>
+		<module>sanbox</module>
 		<module>agent-btc</module>
 		<module>agent-eth</module>
 		<module>agent-eos</module>
 		<module>agent-ont</module>
 		<module>agent-xrp</module>
 		<module>agent-fabric</module>
+		<module>agent-xuper</module>
+		<module>agent-bcos</module>
 	</modules>
 
 	<properties>
@@ -52,11 +55,11 @@
 			<id>ontology-java-sdk-release</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
-		<!--
 		<repository>
-			<id>mvnrepository</id>
-			<url>https://mvnrepository.com</url>
-		</repository>-->
+			<id>fisco-bco</id>
+			<url>https://dl.bintray.com/ethereum/maven/</url>
+		</repository>
+
 	</repositories>
 
 	<dependencyManagement>
@@ -214,6 +217,23 @@
 				<groupId>com.github.ontio</groupId>
 				<artifactId>ontology-sdk-java</artifactId>
 				<version>1.10.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baidu</groupId>
+				<artifactId>xuper-java-sdk</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fisco-bcos</groupId>
+				<artifactId>web3sdk</artifactId>
+				<version>2.1.0</version>
 			</dependency>
 
 		</dependencies>
