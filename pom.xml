@@ -235,6 +235,11 @@
 				<artifactId>web3sdk</artifactId>
 				<version>2.1.0</version>
 			</dependency>
+			<dependency>
+				<groupId>org.fisco-bcos.java-sdk</groupId>
+				<artifactId>java-sdk</artifactId>
+				<version>2.7.0</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

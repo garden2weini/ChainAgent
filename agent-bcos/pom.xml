@@ -84,6 +84,10 @@
             <groupId>org.fisco-bcos</groupId>
             <artifactId>web3sdk</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.fisco-bcos.java-sdk</groupId>
+            <artifactId>java-sdk</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.bif.chainagent</groupId>

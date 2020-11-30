@@ -6,6 +6,8 @@ https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/community.html
 https://fisco-bcos-documentation.readthedocs.io/en/latest/docs/installation.html
 https://webasedoc.readthedocs.io/zh_CN/latest/docs/WeBASE-Install/developer.html
 https://github.com/FISCO-BCOS/spring-boot-starter
+https://github.com/FISCO-BCOS/java-sdk-demo
+https://github.com/FISCO-BCOS/evidenceSample
 
 ~~~
 # https://github.com/bcosorg/bcos/blob/master/docker/README.md
