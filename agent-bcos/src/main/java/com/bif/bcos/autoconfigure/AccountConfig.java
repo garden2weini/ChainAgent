@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Configuration;
 // 暂不需要如下Bean
 //@Configuration
 //@ConfigurationProperties(prefix = "accounts")
+@Deprecated
 public class AccountConfig {
 
     private String pemFile;

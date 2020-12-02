@@ -49,7 +49,10 @@ public class DataHandler {
         BigInteger blockNumberID = null;
         try {
             // getPbftView 返回节点所在指定群组内的最新PBFT视图。
-            // NOTE: 通过getPbftView接口的返回信息可以判断是PBFT共识/Raft共识
+            // NOTE: 通过getPbftView接口的返回信息可以判断是PBFT共识/Raft共识，略
+
+            // getNodeInfo 获取请求节点的NodeID，Topic等信息。
+            this.getNodeInfo();
 
             // getBlockNumber 返回节点指定群组内的最新区块高度
             blockNumberID = this.getLastBlockNumber();
@@ -90,6 +93,24 @@ public class DataHandler {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * 通过Console命令获取链信息
+     * NOTE：需要在链节点上查看
+     */
+    private void getConsoleInfo() {
+        // /root/fisco/console/console.sh
+        /* ./console.sh -h
+           ./console.sh getContactStatus contractAddress
+           ./console.sh listDeployContractAddress HelloWorld
+
+         */
+    }
+
+    private void getNodeInfo() {
+        System.out.println("获取请求节点的NodeID，Topic等信息......");
+        //web3j.
     }
 
     private void getGrpStatus() {
