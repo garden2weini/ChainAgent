@@ -104,6 +104,7 @@ public class DataHandler {
         /* ./console.sh -h
            ./console.sh getContactStatus contractAddress
            ./console.sh listDeployContractAddress HelloWorld
+           ./console.sh getNodeIDList
 
          */
     }

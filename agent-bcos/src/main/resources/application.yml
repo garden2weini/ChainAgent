@@ -16,7 +16,7 @@ group-channel-connections-config:
 #    - group-id: 2
 #      connections-str:
 #        # 若节点小于v2.3.0版本，查看配置项listen_ip:channel_listen_port
-#        - 127.0.0.1:20202 # node channel_listen_ip:channel_listen_port
+#        - 39.107.139.164:20204 # node channel_listen_ip:channel_listen_port
 #        - 127.0.0.1:20203
 channel-service:
   group-id: 1 # sdk实际连接的群组

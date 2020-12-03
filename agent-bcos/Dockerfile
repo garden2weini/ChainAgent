@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Mafan "mafan@zhigui.com"
+MAINTAINER Merlin
 
 USER root
 WORKDIR /root
