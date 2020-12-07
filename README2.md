@@ -1,4 +1,4 @@
-# 区块链Agent-公链
+# 区块链Agent-联盟链
 
 ## FISCO BCOS
 注意：推荐使用OracleJDK！！！
@@ -31,3 +31,8 @@ docker exec -ti xchain bash
 # run command
 ./xchain-cli status
 ~~~
+
+## Fabric Agent
+- Low Level API: https://github.com/hyperledger/fabric-sdk-java
+- High-level API: https://github.com/hyperledger/fabric-gateway-java
+

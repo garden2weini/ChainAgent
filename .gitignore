@@ -1,4 +1,6 @@
 HELP.md
+*.log
+*.publickey
 target/
 .mvn
 !.mvn/wrapper/maven-wrapper.jar

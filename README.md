@@ -1,6 +1,4 @@
-# 区块链Agent-联盟链
-
-REF: [JSON2Java](http://www.json.cn/json/json2java.html)
+# 区块链Agent-公链
 
 ## ETH Agent
 以太坊Agent
@@ -20,14 +18,13 @@ curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "
 REF: https://eosnetworkmonitor.io/#
 ~~~
 # chain/get_info
+curl -X GET -H 'Content-Type:application/json' http://127.0.0.1:8888/v1/chain/get_info
 curl -X GET -H 'Content-Type:application/json' https://api-kylin.eosasia.one/v1/chain/get_info
 # chain/get_block
 curl -X POST -H 'Content-Type:application/json' --data '{"block_num_or_id":"07c5cd7598c2f7ee92e8e72ec4fb5d258d13fb968636280883f24272412f7d63"}' https://api-kylin.eosasia.one/v1/chain/get_block
 ~~~
 
-## Fabric Agent
-- Low Level API: https://github.com/hyperledger/fabric-sdk-java
-- High-level API: https://github.com/hyperledger/fabric-gateway-java
+
 
 ## ONT Agent
 REF: https://dev-docs.ont.io/#/docs-cn/ontology-cli/05-rpc-specification?id=_9-getversion
@@ -101,3 +98,4 @@ curl --user bitcoin:bitcoin --data-binary '{"jsonrpc": "1.0", "id":"curltest", "
 {"result":[{"time":1599774437,"services":1033,"address":"190.188.225.38","port":18333}],"error":null,"id":"curltest"}
 ~~~
   
+REF: [JSON2Java](http://www.json.cn/json/json2java.html)

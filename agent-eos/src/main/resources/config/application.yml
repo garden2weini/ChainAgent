@@ -15,7 +15,8 @@ application:
     port: 8083
     connect-timeout: 50000
   chain-entry:
-    address: https://api-kylin.eosasia.one
+#    address: https://api-kylin.eosasia.one
+    address: http://101.36.122.184
   chain:
     type: eos
     id: 1
