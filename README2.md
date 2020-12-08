@@ -22,6 +22,10 @@ $ tail -f /nodedata/logs/info* | grep "Report"
 
 ## XuperChain
 ref: https://github.com/xuperchain/xuperchain
+ref: https://xuperchain.readthedocs.io/zh/latest/development_manuals/XuperRPC.html
+
+超级链公开测试环境（XuperChain-testnet）
+测试环境接入地址：14.215.179.74:37101
 ~~~
 docker build . -t xuperchain
 # run xchain daemon
