@@ -46,9 +46,6 @@ public class XuperClientTester {
 
     }
 
-    public void queryTx() throws Exception {
-
-    }
 
     public void queryBlock(String blockId) throws Exception {
         XchainOuterClass.InternalBlock block = client.queryBlock(blockId);
@@ -59,7 +56,14 @@ public class XuperClientTester {
         System.out.println("PubKey" + Hex.toHexString(block.getPubkey().toByteArray()));
         List<XchainOuterClass.Transaction> txList = block.getTransactionsList();
         for(XchainOuterClass.Transaction tx: txList) {
-            //tx.
+            ByteString txId = tx.getTxid();
+            List<String> authReqList = tx.getAuthRequireList();
+            ByteString desc = tx.getDesc();
+            String initiator = tx.getInitiator();
+            String nonce = tx.getNonce();
+            List<XchainOuterClass.TxInput> inputList = tx.getTxInputsList();
+            List<XchainOuterClass.TxInputExt> inputExtList = tx.getTxInputsExtList();
+
         }
     }
 
