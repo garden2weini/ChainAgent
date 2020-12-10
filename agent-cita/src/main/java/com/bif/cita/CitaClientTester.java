@@ -16,7 +16,7 @@ import java.util.Map;
  * https://github.com/citahub/cita-sdk-java/
  * https://github.com/citahub/cita-sdk-java/blob/develop/docs/jsonrpc.md
  * https://docs.citahub.com/zh-CN/cita/rpc-guide/rpc
- * docs.citahub.com
+ * https://docs.citahub.com
  */
 public class CitaClientTester {
     // test connection
