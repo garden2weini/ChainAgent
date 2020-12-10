@@ -40,3 +40,19 @@ docker exec -ti xchain bash
 - Low Level API: https://github.com/hyperledger/fabric-sdk-java
 - High-level API: https://github.com/hyperledger/fabric-gateway-java
 
+
+## CITA Agent
+~~~
+curl -X POST --data '{"jsonrpc":"2.0","method":"peerCount","params":[],"id":74}' https://testnet.citahub.com | jq
+curl -X POST --data '{"jsonrpc":"2.0","method":"peersInfo","params":[],"id":83}' https://testnet.citahub.com | jq
+curl -X POST --data '{"jsonrpc":"2.0","method":"blockNumber","params":[],"id":83}' https://testnet.citahub.com | jq
+curl -X POST --data '{"jsonrpc":"2.0","method":"getVersion","params":[],"id":83}' https://testnet.citahub.com | jq
+curl -X POST --data '{"jsonrpc":"2.0","method":"getBlockByNumber","params":["0xF9", true],"id":1}' https://testnet.citahub.com | jq
+~~~
+CITA区块链分为两大类节点：
+- 共识节点：共识节点具有出块和投票权限，交易由共识节点排序并打包成块，共识完成后即被确认为合法区块。
+- 普通节点：普通节点没有出块和投票权限，其他方面和共识节点相同。可以同步和验证链上所有的原始数据，接受交易数据并向其他节点广播。
+
+账户(account)： 链上唯一的标识，表现为地址。权限管理的主体对象。
+- 外部账户(external owned account)： 拥有公私钥对，可发送交易的用户。
+- 合约账户(contract account)： 拥有相关的代码(code)及存储(storage)。
