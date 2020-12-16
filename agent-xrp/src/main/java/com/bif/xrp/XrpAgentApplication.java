@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 @EnableConfigurationProperties({ApplicationProperties.class})
-public class OntologyAgentApplication {
+public class XrpAgentApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OntologyAgentApplication.class, args);
+        SpringApplication.run(XrpAgentApplication.class, args);
     }
 
 }

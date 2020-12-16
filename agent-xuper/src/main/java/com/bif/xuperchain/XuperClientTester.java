@@ -10,6 +10,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assume.assumeNoException;
 
+/**
+ * https://xuperchain.readthedocs.io/zh/latest/test_network/guides.html
+ */
 public class XuperClientTester {
     // test connection
     private String address = "14.215.179.74:37101";

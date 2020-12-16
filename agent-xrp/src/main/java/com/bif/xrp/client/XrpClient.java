@@ -15,6 +15,8 @@ import java.util.HashMap;
 /**
  * Ref: https://xrpl.org/public-rippled-methods.html
  * TOPOLOGY: http://data.ripple.com/v2/network/topology/links
+ * curl -X POST -H "Content-Type: application/json" --data '{"method":"server_state","id":"1607581526145","jsonrpc":"2.0","params":[{}]}' https://s1.ripple.com:51234
+ * curl -X POST -H "Content-Type: application/json" --data '{"method":"server_state","id":"1607581526145","jsonrpc":"2.0","params":[{}]}' http://127.0.0.1:5005
  */
 public class XrpClient {
     RestTemplate restTemplate = new RestTemplate();
@@ -32,6 +34,7 @@ public class XrpClient {
 
     public static void main(String[] args) {
         XrpClient client = new XrpClient("https://s1.ripple.com:51234");
+        //XrpClient client = new XrpClient("http://118.26.39.5:51235");
         ServerState serverState = client.serverState();
         //System.out.println("ServerState:" + serverState.getServerState() +"\n" + serverState.getCompleteLedgers());
 
