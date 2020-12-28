@@ -43,7 +43,7 @@ public class DemoHandler {
             System.out.println("Key4Test-values:" + val);
         }
         for(int i=0; i<10; i++) {
-            m.put("1"+i, "2"+i);
+            m.put("1"+i, "2,"+i);
         }
 
         System.out.println("Hello Redis!end");
