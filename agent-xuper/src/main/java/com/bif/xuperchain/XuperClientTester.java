@@ -15,7 +15,9 @@ import static org.junit.Assume.assumeNoException;
  */
 public class XuperClientTester {
     // test connection
-    private String address = "14.215.179.74:37101";
+    //private String address = "14.215.179.74:37101";
+    // open net
+    private String address = "39.156.69.83:37100";
     private XuperClient client;
 
     public XuperClientTester() {
@@ -30,6 +32,8 @@ public class XuperClientTester {
         XuperClientTester test = new XuperClientTester();
         try {
             test.apiExample();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,6 +41,9 @@ public class XuperClientTester {
 
     public void apiExample() throws Exception {
         getSystemStatus();
+    }
+
+    public void getBlockByHeigth() {
     }
 
 
@@ -54,6 +61,8 @@ public class XuperClientTester {
         XchainOuterClass.InternalBlock block = client.queryBlock(blockId);
         System.out.println("BlockID" + blockId);
         System.out.println("PreHash" + Hex.toHexString(block.getPreHash().toByteArray()));
+        XchainOuterClass.InternalBlock preBlock = client.queryBlock(Hex.toHexString(block.getPreHash().toByteArray()));
+        System.out.println("PRE Block Height:" + preBlock.getHeight());
         System.out.println("NextHash" + Hex.toHexString(block.getNextHash().toByteArray()));
         System.out.println("Proposer" + Hex.toHexString(block.getProposer().toByteArray()));
         System.out.println("PubKey" + Hex.toHexString(block.getPubkey().toByteArray()));
