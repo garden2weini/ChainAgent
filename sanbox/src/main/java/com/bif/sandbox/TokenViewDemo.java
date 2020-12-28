@@ -1,3 +1,5 @@
+package com.bif.sandbox;
+
 /**
  * 获取币价：https://documenter.getpostman.com/view/5728777/RzZ6HfX2?version=latest#5766b28a-b824-4af4-8aae-1ed0decf7896
  *
