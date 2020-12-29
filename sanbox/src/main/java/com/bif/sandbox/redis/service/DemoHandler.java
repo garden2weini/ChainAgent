@@ -2,6 +2,7 @@ package com.bif.sandbox.redis.service;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RMap;
+import org.redisson.api.RSet;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.StringCodec;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class DemoHandler {
         return "已解锁."+ lockKey;
     }
 
-    @Scheduled(fixedDelay = 10_000, initialDelay = 30_000)
+    //@Scheduled(fixedDelay = 10_000, initialDelay = 30_000)
     public final void scheduled() {
         System.out.println("Hello Redis!start");
         Config config = redisson.getConfig();
@@ -46,6 +47,21 @@ public class DemoHandler {
             m.put("1"+i, "2,"+i);
         }
 
+        RMap<String, String> m1 = redisson.getMap("btc:chain-nodes", StringCodec.INSTANCE);
+        for(Object val : m1.values().toArray()) {
+            System.out.println("nodes:" + val);
+        }
+        System.out.println("Hello Redis!end");
+    }
+
+    @Scheduled(fixedDelay = 10_000, initialDelay = 30_000)
+    public final void scheduled1() {
+        System.out.println("Hello Redis!start");
+
+        RMap<String, String> m1 = redisson.getMap("btc:chain-nodes", StringCodec.INSTANCE);
+        for(Object val : m1.values().toArray()) {
+            System.out.println("nodes:" + val);
+        }
         System.out.println("Hello Redis!end");
     }
 

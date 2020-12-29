@@ -2,6 +2,7 @@ package com.bif.xuperchain;
 
 import com.baidu.xuperunion.api.XuperClient;
 import com.baidu.xuperunion.pb.XchainOuterClass;
+import com.bif.xuperchain.client.XuperClientX;
 import com.google.protobuf.ByteString;
 import org.bouncycastle.util.encoders.Hex;
 
@@ -18,11 +19,11 @@ public class XuperClientTester {
     //private String address = "14.215.179.74:37101";
     // open net
     private String address = "39.156.69.83:37100";
-    private XuperClient client;
+    private XuperClientX client;
 
     public XuperClientTester() {
         try {
-            client = new XuperClient(address);
+            client = new XuperClientX(address);
         } catch (Exception e) {
             assumeNoException(e);
         }
@@ -31,9 +32,9 @@ public class XuperClientTester {
     public static void main(String[] args) {
         XuperClientTester test = new XuperClientTester();
         try {
-            test.apiExample();
-
-
+            //test.apiExample();
+            test.getAccountByAK("gxz77GP5zpTTKeXdxbPn8V5WAsW1n9iWe");
+            test.getAccountContracts("");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,6 +42,25 @@ public class XuperClientTester {
 
     public void apiExample() throws Exception {
         getSystemStatus();
+    }
+
+    public void getAccountByAK(String address) {
+        System.out.println("getAccountByAK start");
+        List<String> list = this.client.getAccountByAK(address);
+        for(String item: list) {
+            System.out.println(item);
+        }
+        System.out.println("getAccountByAK end.");
+
+    }
+
+    public void getAccountContracts(String address) {
+        System.out.println("getAccountContracts start");
+        List<XchainOuterClass.ContractStatus> list = this.client.getAccountContracts(address);
+        for(XchainOuterClass.ContractStatus item: list) {
+            System.out.println(item.getContractName());
+        }
+        System.out.println("getAccountContracts end.");
     }
 
     public void getBlockByHeigth() {
