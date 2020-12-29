@@ -9,6 +9,9 @@ import io.grpc.ManagedChannelBuilder;
 
 import java.util.List;
 
+/**
+ * https://xuperchain.readthedocs.io/zh/latest/commands_reference.html
+ */
 public class XuperClientX extends XuperClient {
     private final ManagedChannel channel2;
     private final XchainGrpc.XchainBlockingStub blockingClient2;
