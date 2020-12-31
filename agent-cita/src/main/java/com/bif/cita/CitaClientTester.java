@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public class CitaClientTester {
     // test connection
+    // CITA测试链，限制是每秒100，每IP每天10MB（20201231 700多万的块高，20多万的交易数量）
     private String address = "https://testnet.citahub.com";
     private static CITAj service;
 

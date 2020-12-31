@@ -21,11 +21,14 @@ $ tail -f /nodedata/logs/info* | grep "Report"
 - Docker运行BCOS及配置：https://github.com/bcosorg/bcos
 
 ## XuperChain
-ref: https://github.com/xuperchain/xuperchain
-ref: https://xuperchain.readthedocs.io/zh/latest/development_manuals/XuperRPC.html
+ref: 
+- https://github.com/xuperchain/xuperchain
+- https://xuperchain.readthedocs.io/zh/latest/development_manuals/XuperRPC.html
 
-超级链公开测试环境（XuperChain-testnet）
-测试环境接入地址：14.215.179.74:37101
+Xuperchain网络：
+- 测试网络接入地址：14.215.179.74:37101（XuperChain-testnet）
+- 开放网络接口地址：39.156.69.83:37100
+- 开放网络：https://xuper.baidu.com/n/console#/xuperos/info
 ~~~
 docker build . -t xuperchain
 # run xchain daemon
@@ -42,6 +45,7 @@ docker exec -ti xchain bash
 
 
 ## CITA Agent
+CITA测试链，限制是每秒100，每IP每天10MB
 ~~~
 curl -X POST --data '{"jsonrpc":"2.0","method":"peerCount","params":[],"id":74}' https://testnet.citahub.com | jq
 curl -X POST --data '{"jsonrpc":"2.0","method":"peersInfo","params":[],"id":83}' https://testnet.citahub.com | jq
