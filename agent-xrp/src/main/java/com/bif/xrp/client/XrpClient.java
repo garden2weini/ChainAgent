@@ -33,8 +33,9 @@ public class XrpClient {
     }
 
     public static void main(String[] args) {
-        XrpClient client = new XrpClient("https://s1.ripple.com:51234");
-        //XrpClient client = new XrpClient("http://118.26.39.5:51235");
+        //XrpClient client = new XrpClient("https://s1.ripple.com:51234");
+        //XrpClient client = new XrpClient("http://118.26.39.5:5005");
+        XrpClient client = new XrpClient("http://39.101.191.133:5005");
         ServerState serverState = client.serverState();
         //System.out.println("ServerState:" + serverState.getServerState() +"\n" + serverState.getCompleteLedgers());
 
