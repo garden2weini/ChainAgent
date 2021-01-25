@@ -3,7 +3,8 @@ spring:
     name: eos-${application.agent.node-id}
   profiles:
     #    active: @profile.active@
-    active: @environment@
+    #active: @environment@
+    active: test
 
 server:
   port: 7000
@@ -16,7 +17,8 @@ application:
     connect-timeout: 50000
   chain-entry:
 #    address: https://api-kylin.eosasia.one
-    address: http://101.36.122.184
+    address: https://api.eosbeijing.one
+#    address: http://39.103.152.220
   chain:
     type: eos
     id: 1
